@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Skewfird\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add https://api.observablehq.com/d/d70af8d053bacad4@30.tgz?v=3
+  C:\Program Files\nodejs\node.exe C:\Users\Skewfird\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add sharp
 
 PATH: 
-  C:\Users\Skewfird\AppData\Roaming\npm;C:\Program Files\nodejs\;C:\Python311\Scripts\;C:\Python311\;C:\Python311\Scripts\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\R\Rtools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Common Files\Autodesk Shared\;C:\Program Files\Git\cmd;C:\Program Files\MongoDB\Server\4.4\bin;C:\Program Files\USGS\phreeqc-3.6.2-15100-x64\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\Skewfird\AppData\Local\pnpm;C:\Users\Skewfird\AppData\Local\Microsoft\WindowsApps;C:\Users\Skewfird\AppData\Local\GitHubDesktop\bin;C:\Users\Skewfird\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Skewfird\AppData\Local\Microsoft\WindowsApps;C:\Anaconda3\envs\envgdal\Scripts;C:\Users\Skewfird\AppData\Roaming\npm
+  C:\Users\Skewfird\AppData\Roaming\npm;C:\Program Files\nodejs\;C:\Python311\Scripts\;C:\Python311\;C:\Python311\Scripts\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\R\Rtools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Common Files\Autodesk Shared\;C:\Program Files\Git\cmd;C:\Program Files\MongoDB\Server\4.4\bin;C:\Program Files\USGS\phreeqc-3.6.2-15100-x64\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\Skewfird\AppData\Local\pnpm;C:\Users\Skewfird\AppData\Local\Microsoft\WindowsApps;C:\Users\Skewfird\AppData\Local\GitHubDesktop\bin;C:\Users\Skewfird\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Skewfird\AppData\Local\Microsoft\WindowsApps;C:\Anaconda3\envs\envgdal\Scripts;C:\Users\Skewfird\AppData\Roaming\npm;D:\Stockage\Codes;
 
 Yarn version: 
   1.22.5
@@ -14,13 +14,13 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: ENOENT: no such file or directory, copyfile 'C:\Users\Skewfird\AppData\Local\Yarn\Cache\v6\npm-unist-util-is-4.1.0-976e5f462a7a5de73d94b706bac1b90671b57797-integrity\node_modules\unist-util-is\convert.js' -> 'D:\Stockage\Codes\GitHub\Projets WEB\georgerowlands.ch-main\node_modules\@akebifiky\remark-simple-plantuml\node_modules\unist-util-is\convert.js'
+  Error: EEXIST: file already exists, mkdir 'D:\Stockage\Codes\GitHub\Projets WEB\MoOmgaia\node_modules\@akebifiky\remark-simple-plantuml\node_modules'
 
 npm manifest: 
   {
-    "name": "nextra-garden",
+    "name": "Mo'Omgaia",
     "version": "0.0.1",
-    "description": "George Rowlands' Digital Garden",
+    "description": "Mo'Omgaia, a D&D campaign setting.",
     "scripts": {
       "dev": "next dev",
       "build": "next build",
@@ -29,14 +29,14 @@ npm manifest:
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/LuciferUchiha/nextra-garden.git"
+      "url": "git+https://github.com/MoOmgaia/MoOmgaia.git"
     },
-    "author": "George Rowlands",
+    "author": "YLDev",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/LuciferUchiha/nextra-garden/issues"
+      "url": "https://github.com/MoOmgaia/MoOmgaia/issues"
     },
-    "homepage": "https://github.com/LuciferUchiha/nextra-garden#readme",
+    "homepage": "https://github.com/MoOmgaia/MoOmgaia#readme",
     "dependencies": {
       "@akebifiky/remark-simple-plantuml": "1.0.2",
       "@giscus/react": "2.2.6",
