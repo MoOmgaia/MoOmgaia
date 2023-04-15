@@ -1,6 +1,6 @@
 import React from "react";
 
-type EditoProps = { resources: any; };
+type EditoProps = { title: any; content: any;};
 
 const Edito = ({
   title,
