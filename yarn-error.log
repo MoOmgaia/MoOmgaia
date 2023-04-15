@@ -1,0 +1,67 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Skewfird\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add https://api.observablehq.com/d/d70af8d053bacad4@30.tgz?v=3
+
+PATH: 
+  C:\Users\Skewfird\AppData\Roaming\npm;C:\Program Files\nodejs\;C:\Python311\Scripts\;C:\Python311\;C:\Python311\Scripts\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\R\Rtools\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Common Files\Autodesk Shared\;C:\Program Files\Git\cmd;C:\Program Files\MongoDB\Server\4.4\bin;C:\Program Files\USGS\phreeqc-3.6.2-15100-x64\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Users\Skewfird\AppData\Local\pnpm;C:\Users\Skewfird\AppData\Local\Microsoft\WindowsApps;C:\Users\Skewfird\AppData\Local\GitHubDesktop\bin;C:\Users\Skewfird\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Skewfird\AppData\Local\Microsoft\WindowsApps;C:\Anaconda3\envs\envgdal\Scripts;C:\Users\Skewfird\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  18.12.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\Skewfird\AppData\Local\Yarn\Cache\v6\npm-unist-util-is-4.1.0-976e5f462a7a5de73d94b706bac1b90671b57797-integrity\node_modules\unist-util-is\convert.js' -> 'D:\Stockage\Codes\GitHub\Projets WEB\georgerowlands.ch-main\node_modules\@akebifiky\remark-simple-plantuml\node_modules\unist-util-is\convert.js'
+
+npm manifest: 
+  {
+    "name": "nextra-garden",
+    "version": "0.0.1",
+    "description": "George Rowlands' Digital Garden",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/LuciferUchiha/nextra-garden.git"
+    },
+    "author": "George Rowlands",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/LuciferUchiha/nextra-garden/issues"
+    },
+    "homepage": "https://github.com/LuciferUchiha/nextra-garden#readme",
+    "dependencies": {
+      "@akebifiky/remark-simple-plantuml": "1.0.2",
+      "@giscus/react": "2.2.6",
+      "clsx": "1.2.1",
+      "next": "13.1.6",
+      "nextra": "2.2.14",
+      "nextra-theme-docs": "2.2.14",
+      "react": "18.2.0",
+      "react-dom": "18.2.0",
+      "react-icons": "4.7.1"
+    },
+    "devDependencies": {
+      "@types/node": "18.11.10",
+      "autoprefixer": "^10.4.13",
+      "eslint": "8.34.0",
+      "eslint-config-next": "13.1.6",
+      "postcss": "^8.4.21",
+      "tailwindcss": "^3.2.4",
+      "typescript": "^4.9.5",
+      "@observablehq/runtime":"5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

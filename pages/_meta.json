@@ -1,0 +1,20 @@
+{
+  "index": {
+    "type": "page",
+    "title": "Accueil",
+    "theme": {
+      "typesetting": "article",
+      "layout": "full"
+    }
+  },
+  "articles": {
+    "title": "Articles",
+    "type": "page"
+  },
+  "contact": {
+    "title": "Contact↗",
+    "type": "page",
+    "href": "https://www.linkedin.com/in/georgerowlands/",
+    "newWindow": true
+  }
+}

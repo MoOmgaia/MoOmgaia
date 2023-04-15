@@ -1,0 +1,9 @@
+{
+  "index": "Articles",
+  "---": {
+    "type": "separator"
+  },
+  "computerScience": "Histoire & Civilisations",
+  "mathematics": "Cartographie",
+  "resources": "Resources"
+}

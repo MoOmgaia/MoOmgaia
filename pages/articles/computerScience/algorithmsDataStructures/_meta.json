@@ -1,0 +1,11 @@
+{
+  "collections": "Collections",
+  "bags": "Bags",
+  "sets": "Sets",
+  "linkedLists": "Linked Lists",
+  "queues": "Queues",
+  "stacks": "Stacks",
+  "hashTables": "Hash Tables",
+  "graphs": "Graphs",
+  "trees": "Trees"
+}

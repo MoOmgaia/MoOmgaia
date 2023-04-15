@@ -1,0 +1,18 @@
+{
+  "artificialIntelligence": "Artificial Intelligence",
+  "algorithmsDataStructures": "Algorithms and Data Structures",
+  "concurrentProgramming": "Concurrent Programming",
+  "computerArchitecture": "Computer Architecture",
+  "dataMining": "Data Mining",
+  "designPatterns": "Design Patterns",
+  "distributedSystems": "Distributed Systems",
+  "java": "Java",
+  "javaScript": "JavaScript",
+  "react": "React",
+  "python": "Python",
+  "c": "C",
+  "cpp": "C++",
+  "cSharp": "C#",
+  "git": "Git",
+  "make": "Make"
+}
