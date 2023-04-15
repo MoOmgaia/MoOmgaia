@@ -7,9 +7,9 @@ import BackToTop from "./components/backToTop/backToTop";
 
 const config: DocsThemeConfig = {
         project: {
-            link: "https://github.com/LuciferUchiha/nextra-garden"
+            link: "https://github.com/MoOmgaia/MoOmgaia"
         },
-        docsRepositoryBase: "https://github.com/LuciferUchiha/nextra-garden/tree/main/",
+        docsRepositoryBase: "https://github.com/MoOmgaia/MoOmgaia/tree/main/",
         primaryHue: 180,
         nextThemes: {
             defaultTheme: "dark"
@@ -51,14 +51,11 @@ const config: DocsThemeConfig = {
                 <div className="flex w-full flex-row items-center justify-between">
                     <ul>
                         <li><p className="font-bold">Socials</p></li>
-                        <li><a href="https://www.linkedin.com/in/georgerowlands/" className="text-sm">Linkedin↗</a></li>
-                        <li><a href="https://github.com/LuciferUchiha" className="text-sm">GitHub↗</a></li>
-                        <li><a href="https://stackoverflow.com/users/10994912/george-r"
-                               className="text-sm">StackOverflow↗</a></li>
+                        <li><a href="https://github.com/MoOmgaia" className="text-sm">GitHub↗</a></li>
                     </ul>
                     <a
 
-                        href="https://www.buymeacoffee.com/georgerowlands" target="_blank"
+                        href="https://www.buymeacoffee.com/MoOmgaia" target="_blank"
                     >
                         <img
                             src="buyMeACoffeePurple.png"
