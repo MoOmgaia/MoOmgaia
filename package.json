@@ -1,7 +1,7 @@
 {
-  "name": "Mô'Omgaïa",
+  "name": "Mo'Omgaia",
   "version": "0.0.1",
-  "description": "Mô'Omgaïa, a D&D campaign setting.",
+  "description": "Mo'Omgaia, a D&D campaign setting.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
