@@ -1,7 +1,7 @@
 {
-  "name": "nextra-garden",
+  "name": "Mô'Omgaïa",
   "version": "0.0.1",
-  "description": "George Rowlands' Digital Garden",
+  "description": "Mô'Omgaïa, a D&D campaign setting.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuciferUchiha/nextra-garden.git"
+    "url": "git+https://github.com/MoOmgaia/MoOmgaia.git"
   },
-  "author": "George Rowlands",
+  "author": "YLDev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LuciferUchiha/nextra-garden/issues"
+    "url": "https://github.com/MoOmgaia/MoOmgaia/issues"
   },
-  "homepage": "https://github.com/LuciferUchiha/nextra-garden#readme",
+  "homepage": "https://github.com/MoOmgaia/MoOmgaia#readme",
   "dependencies": {
     "@akebifiky/remark-simple-plantuml": "1.0.2",
     "@giscus/react": "2.2.6",
