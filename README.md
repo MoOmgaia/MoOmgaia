@@ -1,4 +1,4 @@
-# Nextra Garden
+# Mô'Omgaïa
 
 ## Local Development
 
