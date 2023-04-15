@@ -3,7 +3,8 @@
   "---": {
     "type": "separator"
   },
-  "computerScience": "Histoire & Civilisations",
-  "mathematics": "Cartographie",
+  "histoire": "Histoire & Civilisations",
+  "carto": "Cartographie",
+  "scenar": "Scénarii",
   "resources": "Resources"
 }
