@@ -60,7 +60,7 @@ const config: DocsThemeConfig = {
                         <img
                             src="BuyMeACoffee.png"
                             alt="Buy Me A Coffee"
-                            style={{height: "41px", width: "174px"}}
+                            style={{height: "100px", width: "100px"}}
                         />
                     </a>
                 </div>
