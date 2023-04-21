@@ -55,7 +55,7 @@ const config: DocsThemeConfig = {
                     </ul>
                     <a
 
-                        href="https://www.buymeacoffee.com/MoOmgaia" target="_blank"
+                        href="https://www.buymeacoffee.com/moomgaia" target="_blank"
                     >
                         <img
                             src="buyMeACoffeePurple.png"
