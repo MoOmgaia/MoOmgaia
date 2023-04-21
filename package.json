@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/MoOmgaia/MoOmgaia#readme",
   "dependencies": {
-    "@akebifiky/remark-simple-plantuml": "1.0.2",
     "@giscus/react": "2.2.6",
     "clsx": "1.2.1",
     "next": "13.1.6",
@@ -36,7 +35,6 @@
     "eslint-config-next": "13.1.6",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4",
-    "typescript": "^4.9.5",
-    "@observablehq/runtime":"5"
+    "typescript": "^4.9.5"
   }
 }

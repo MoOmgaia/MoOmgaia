@@ -9,6 +9,15 @@ const makePrimaryColor =
             }
             return `hsl(var(--nextra-primary-hue) 100% ${l}% / ${opacityValue})`;
         };
+	
+const makeSecondaryColor =
+    l =>
+        ({opacityValue}) => {
+            if (opacityValue === undefined) {
+                return `hsl(var(--nextra-secondary-hue) 100% ${l}%)`;
+            }
+            return `hsl(20 100% ${l}% / ${opacityValue})`;
+        };
 
 /** @type {import("tailwindcss").Config} */
 module.exports = {
@@ -64,7 +73,20 @@ module.exports = {
                 750: makePrimaryColor(35),
                 800: makePrimaryColor(32),
                 900: makePrimaryColor(24)
-            }
+            },
+            secondary: {
+                50: makeSecondaryColor(97),
+                100: makeSecondaryColor(94),
+                200: makeSecondaryColor(86),
+                300: makeSecondaryColor(77),
+                400: makeSecondaryColor(66),
+                500: makeSecondaryColor(50),
+                600: makeSecondaryColor(45),
+                700: makeSecondaryColor(39),
+                750: makeSecondaryColor(35),
+                800: makeSecondaryColor(32),
+                900: makeSecondaryColor(24)
+            },
         },
         extend: {
             colors: {

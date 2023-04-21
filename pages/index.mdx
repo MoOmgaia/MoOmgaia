@@ -8,28 +8,28 @@ import ServiceGrid from '../components/services/ServiceGrid.tsx';
 import { Callout } from "nextra-theme-docs";
 import Edito from "../Edito/Edito.mdx";
 
-<div id="hero_back" className="absolute top-16 left-0 -z-10 h-60 w-full opacity-40 bg-primary-200 dark:filter-none">
-  <Image alt="Bandeau" src="/bandeau.png" width={1600} height={215} className="shadow-lg rounded-b-lg w-full h-96"/>
+<div id="hero_back" className="absolute top-16 left-0 -z-10 h-60 w-full opacity-80 bg-primary-200 dark:filter-none">
+  <Image alt="Bandeau" src="/bandeau3.png" width={1600} height={215} className="shadow-lg rounded-b-lg w-full h-96"/>
 </div>
 
-<h1 className="leading-[4.5rem] mt-28 font-bold text-primary-900 dark:text-primary-700 text-6xl break-words">Mô'Omgaïa</h1>
+<h1 className="leading-[4.5rem] mt-28 font-bold text-current dark:text-primary-700 text-6xl break-words">Mô'Omgaïa</h1>
 
-<h2 className="break-words text-3xl font-bold">A Mystara alternative</h2>
+<h2 className="break-words text-3xl font-bold text-secondary-100">Une alternative à Mystara</h2>
 
-<h2 className="mb-4 text-3xl font-bold text-primary-900 dark:text-primary-700">A D&D 5e campaign setting</h2>
+<h2 className="mb-4 text-3xl font-bold text-current dark:text-primary-700">Un décor de campagne pour D&D 5e</h2>
 
 <ServiceGrid resources={[
     {
       name: "Histoire & Civilisations",
       description: "Mô'Omgaïa a une histoire trés longue, de la naissance des grands anciens jusqu'à aujourd'hui plus de 1 400 000 années se sont écoulées parsemées de guerre, d'émmergence de peuples et de nations.",
-      link: "/Civilisations",
+      link: "/articles/histoire",
       imgSrc: "/hex-histoire.svg",
       imgAlt: "Découvrez des civilisations inconnues !",
       newTab: false,
       buttons: [
         {
           text: "Découvrez de nouveaux territoires →",
-          link: "/Civilisations",
+          link: "/articles/histoire",
           color: "view",
           newTab: false,
         }
@@ -54,14 +54,14 @@ import Edito from "../Edito/Edito.mdx";
     {
       name: "Scénarii",
       description: "Nous regroupons ici les aventures qui parsèment les lieux les plus divers de Mô'Omgaïa. Complots d'envergure ou simples pistes, caprice des Immortels ou vol à la tir, les scénarii sauront faire vivre vos tables de jeu.",
-      link: "https://discord.com/servers/learn-with-mueez-1068446943736516678",
+      link: "/articles/scenar",
       imgSrc: "/hex-scénarii.svg",
       imgAlt: "L'aventure vous attend !",
       newTab: false,
       buttons: [
         {
           text: "L'aventure vous attend →",
-          link: "/Scenarii",
+          link: "/articles/scenar",
           color: "view",
           newTab: false,
         }
@@ -86,4 +86,7 @@ import Edito from "../Edito/Edito.mdx";
   ]}
 
 />
+<div className="w-full h-32 flex justify-center">
+    <Image alt="Header" src="/diablo2.png" width={428/2} height={310/2}/>
+</div>
 <Edito/>

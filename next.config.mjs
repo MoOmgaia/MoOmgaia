@@ -1,5 +1,4 @@
 import nextra from 'nextra';
-import simplePlantUML from '@akebifiky/remark-simple-plantuml';
 
 const withNextra = nextra({
     theme: 'nextra-theme-docs',
@@ -11,12 +10,7 @@ const withNextra = nextra({
     },
     defaultShowCopyCode: true,
     mdxOptions: {
-        remarkPlugins: [
-            [
-                simplePlantUML,
-                {baseUrl: "https://www.plantuml.com/plantuml/svg"}
-            ]
-        ]
+        remarkPlugins: []
     }
 });
 

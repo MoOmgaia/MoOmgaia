@@ -6,6 +6,20 @@
     html {
         scroll-behavior: smooth;
     }
+    
+    img[src*='#left'] {
+        float: left;
+        padding:0.7em;
+    }
+    img[src*='#right'] {
+        float: right;
+        padding:0.7em;
+    }
+    img[src*='#center'] {
+        display: block;
+        margin: auto;
+        padding:0.7em;
+    }
 }
 
 

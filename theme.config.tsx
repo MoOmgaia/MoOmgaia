@@ -10,10 +10,11 @@ const config: DocsThemeConfig = {
             link: "https://github.com/MoOmgaia/MoOmgaia"
         },
         docsRepositoryBase: "https://github.com/MoOmgaia/MoOmgaia/tree/main/",
-        primaryHue: 180,
+        primaryHue: { dark: 60, light: 220 },
         nextThemes: {
-            defaultTheme: "dark"
+            defaultTheme: "light"
         },
+        darkMode: false,
         editLink: {
             text: "Edit this page on GitHub →"
         },
@@ -22,7 +23,7 @@ const config: DocsThemeConfig = {
         },
         useNextSeoProps() {
             const {asPath} = useRouter();
-            return {titleTemplate: (asPath !== "/") ? "%s – GR" : "georgerowlands.ch"};
+            return {titleTemplate: (asPath !== "/") ? "%s – MoOm" : "Moomgaia.fr"};
         },
         head: <link rel="icon" type="image/x-icon" href="logo.svg"/>,
         logo: (<>
@@ -30,7 +31,6 @@ const config: DocsThemeConfig = {
               <span className="ml-4 font-bold">Mô'Omgaïa</span>
               </>),
         search: {
-            // TODO I can replace the component that is shown for when nothing was found with an image of a dead tree
             placeholder: "recherche d'un article..."
         },
         sidebar: {defaultMenuCollapseLevel: 1},
