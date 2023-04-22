@@ -20,6 +20,7 @@
   "homepage": "https://github.com/MoOmgaia/MoOmgaia#readme",
   "dependencies": {
     "@giscus/react": "2.2.6",
+    "@vercel/analytics": "^1.0.0",
     "clsx": "1.2.1",
     "next": "13.1.6",
     "nextra": "2.2.14",

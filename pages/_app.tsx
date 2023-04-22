@@ -1,11 +1,14 @@
 import type {ReactElement} from "react";
 import type {AppProps} from "next/app";
+import { Analytics } from '@vercel/analytics/react';
 
 import "../styles/globals.css";
 
-export default function Nextra({
-    Component,
-    pageProps
-}: AppProps): ReactElement {
-    return <Component {...pageProps} />;
+export default function Nextra({Component, pageProps}: AppProps): ReactElement {
+    return (
+    <>
+      <Component {...pageProps} />
+      <Analytics />
+    </>
+  );
 }
