@@ -22,9 +22,9 @@
     "@giscus/react": "2.2.6",
     "@vercel/analytics": "^1.0.0",
     "clsx": "1.2.1",
-    "next": "13.1.6",
-    "nextra": "2.2.14",
-    "nextra-theme-docs": "2.2.14",
+    "next": "^15.0.3",
+    "nextra": "^3.2.4",
+    "nextra-theme-docs": "^3.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.7.1"
