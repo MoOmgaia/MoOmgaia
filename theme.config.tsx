@@ -30,9 +30,9 @@ const docsThemeConfig = {
             <img src="/logo.svg" width="64" height="48" alt="" />
             <span className="ml-4 font-bold">Mô'Omgaïa</span>
             </>),
-    search: {
-        placeholder: "recherche d'un article..."
-    },
+    //search: {
+    //    placeholder: "recherche d'un article..."
+    //},
     sidebar: {defaultMenuCollapseLevel: 1},
     toc: {
         title: "Table of contents"
