@@ -1,41 +1,38 @@
-import {useEffect} from "react";
-import {VscChevronUp} from "react-icons/vsc";
+import cn from 'clsx'
+import { ArrowRightIcon } from 'nextra/icons'
+import type { ReactElement } from 'react'
+import { useEffect, useRef } from 'react'
 
-export default function BackToTop() {
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
-    const scrollToTop = () => {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    };
+export function BackToTop({ className }: { className?: string }): ReactElement {
+  const ref = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    function toggleVisible() {
+      const { scrollTop } = document.documentElement
+      ref.current?.classList.toggle('nx-opacity-0', scrollTop < 300)
+    }
 
-    useEffect(() => {
-        const onScroll = (event) => {
-            // will exist because useEffect is after render cycle
-            const backToTopButton = document.getElementById("backToTopButton");
+    window.addEventListener('scroll', toggleVisible)
+    return () => {
+      window.removeEventListener('scroll', toggleVisible)
+    }
+  }, [])
 
-            if (
-                document.body.scrollTop > 20 ||
-                document.documentElement.scrollTop > 20
-            ) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        };
-
-        // after the component has rendered
-        window.addEventListener("scroll", onScroll);
-        // cleanup event handler when component is unmounted
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-        };
-    }, []);
-
-    return (<button
-        id="backToTopButton"
-        onClick={scrollToTop}
-        className="fixed right-5 bottom-5 mt-8 hidden rounded-full p-2 bg-primary-700 border-primary-700 hover:bg-primary-800"
+  return (
+    <button
+      ref={ref}
+      aria-hidden="true"
+      onClick={scrollToTop}
+      className={cn(
+        'nx-flex nx-items-center nx-gap-1.5 nx-transition nx-opacity-0',
+        className
+      )}
     >
-        <VscChevronUp className="w-[36px] h-[36px] text-white"/>
-    </button>);
+      Scroll to top
+      <ArrowRightIcon className="-nx-rotate-90 nx-w-3.5 nx-h-3.5 nx-border nx-rounded-full nx-border-current" />
+    </button>
+  )
 }

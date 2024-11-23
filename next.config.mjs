@@ -1,6 +1,6 @@
-import createWithNextra from 'nextra';
+import nextra from 'nextra';
 
-const withNextra = createWithNextra({
+const withNextra = nextra({
     theme: 'nextra-theme-docs',
     themeConfig: './theme.config.tsx',
     staticImage: true,
@@ -11,7 +11,10 @@ const withNextra = createWithNextra({
     defaultShowCopyCode: true,
     mdxOptions: {
         remarkPlugins: []
-    },
+    }
+});
+
+export default withNextra({
     images: {
         unoptimized: true,
     },
@@ -19,6 +22,5 @@ const withNextra = createWithNextra({
     distDir: './.next',
     sassOptions: {
         silenceDeprecations: ['legacy-js-api'], // 👈 HERE
-    },
-    
+    }
 });
