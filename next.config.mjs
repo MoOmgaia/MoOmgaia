@@ -1,6 +1,6 @@
-import nextra from 'nextra';
+import createWithNextra from 'nextra';
 
-const withNextra = nextra({
+const withNextra = createWithNextra({
     theme: 'nextra-theme-docs',
     themeConfig: './theme.config.tsx',
     staticImage: true,
