@@ -1,4 +1,4 @@
-export default {
+const meta_articles = {
   "index": "Articles",
   "---": {
     "type": "separator"
@@ -7,4 +7,6 @@ export default {
   "carto": "Cartographie",
   "scenar": "Scénarii",
   "ressources": "Resources"
-}
+};
+
+export default meta_articles;

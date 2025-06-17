@@ -8,7 +8,7 @@ export default function HeroSection() {
                 <Image alt="Bandeau" src="/bandeau3.png" width={1600} height={215} className="shadow-lg rounded-b-lg w-full h-96"/>
             </div>
 
-            <h1 className="leading-[4.5rem] mt-28 font-bold text-current dark:text-primary-700 text-6xl break-words">Mô'Omgaïa</h1>
+            <h1 className="leading-[4.5rem] mt-28 font-bold text-current dark:text-primary-700 text-6xl break-words">Mô&#39;Omgaïa</h1>
 
             <h2 className="break-words text-3xl font-bold text-secondary-100">Une alternative à Mystara</h2>
 

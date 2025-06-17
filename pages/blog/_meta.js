@@ -1,4 +1,4 @@
-export default {
+const meta_blog = {
   "index": {
     "type": "page",
     "title": "Blog",
@@ -7,4 +7,6 @@ export default {
       "layout": "full"
     }
   }
-}
+};
+
+export default meta_blog;

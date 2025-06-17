@@ -1,4 +1,4 @@
-export default {
+const meta_main = {
   "index": {
     "type": "page",
     "title": "Accueil",
@@ -21,4 +21,6 @@ export default {
     "href": "emailto:moomgaia@free.fr",
     "newWindow": true
   }
-}
+};
+
+export default meta_main;

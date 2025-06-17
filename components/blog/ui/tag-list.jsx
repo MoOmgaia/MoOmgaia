@@ -8,7 +8,7 @@ const Tag = ({
   ...props
 }) => {
   return (
-    <Anchor
+    <a
       href={href}
       className={clsx(
         'rounded-md bg-gray-200 hover:!no-underline dark:bg-[#24272E]',
@@ -19,7 +19,7 @@ const Tag = ({
       {...props}
     >
       {children}
-    </Anchor>
+    </a>
   )
 }
 
