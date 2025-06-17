@@ -1,0 +1,12 @@
+
+	.footerSection a {
+            text-decoration: underline;
+	}
+
+
+	.footerSection a:hover {
+            color: crimson;
+			text-decoration: none;
+	}
+
+

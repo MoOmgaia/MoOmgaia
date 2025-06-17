@@ -1,4 +1,3 @@
-import type {ReactElement, ReactNode} from "react";
 import cn from "clsx";
 import {VscRocket, VscInfo, VscWarning, VscError, VscBeaker, VscSymbolEvent} from "react-icons/vsc";
 
@@ -12,9 +11,8 @@ const TypeToEmoji = {
     todo: <VscSymbolEvent className="w-[28px] h-[28px]"/>
 };
 
-type CalloutType = keyof typeof TypeToEmoji
 
-const classes: Record<CalloutType, string> = {
+const classes = {
     default: cn(
         "border-primary-200 bg-primary-50 text-primary-800 dark:border-primary-400/30 dark:bg-primary-400/20 dark:text-primary-300"
     ),
@@ -35,17 +33,9 @@ const classes: Record<CalloutType, string> = {
     )
 };
 
-type CalloutProps = {
-    type?: CalloutType
-    emoji?: string | ReactElement
-    children: ReactNode
-}
 
-export default function Callout({
-    children,
-    type = "default",
-    emoji = TypeToEmoji[type]
-}: CalloutProps): ReactElement {
+
+export default function Callout({children, type = "default", emoji = TypeToEmoji[type]}) {
     return (
         <div
             className={cn(

@@ -1,12 +1,11 @@
 import React from "react";
 import Service from "./Service";
 
-type ServiceGridProps = { resources: any; };
 
-const ServiceGrid = ({ resources }: ServiceGridProps) => {
+const ServiceGrid = ({ resources }) => {
   return (
-    <div className="mt-12 grid grid-cols-1 gap-1 md:grid-cols-2 gap-1 md:grid-cols-3 gap-1 md:grid-cols-4">
-      {resources.map((resource: any, index: number) => (
+    <div className="mt-12 grid gap-1 md:grid-cols-4">
+      {resources.map((resource, index) => (
         <Service
           name={resource.name}
           description={resource.description}

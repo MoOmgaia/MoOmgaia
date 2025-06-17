@@ -1,15 +1,17 @@
 ---
 title: "Les articles"
 description: "Articles - Mô'Omgaïa"
+comment: false
 ---
 
-import Callout from "../../components/callout/callout";
+import Image from 'next/image'
 
 # Les articles
 
 ## Le jardin numérique
 
-![jardin numérique](/articles_images/jardin.png#center)
+
+<Image className="opacity-80" src="/articles/jardin.png#center" alt="Jardin numérique" width={1420} height={605} />
 
 Le site propose des articles selon une structure de "jardin numérique", c'est une place pour partager des ressources, des idées et pour les cultiver dans un jardin. Cela nous permet également d'avoir un endroit où notes et descriptions peuvent être archivées pour nourrir et faire grandir le monde de Mô'Omgaïa.
 
@@ -23,22 +25,22 @@ Si vous souhaitez en savoir plus sur les jardins numériques, on vous recommande
 
 Les articles que nous proposons sont répartis entre les 4 catégories décrites ci-dessous.
 
-![histoire](/articles_images/histoire.png#right)
+<Image className="opacity-80" src="/articles/histoire.png#right" alt="Histoire & Civilisations" width={180} height={199} />
 ### Histoire & Civilisation
 
 Dans cette catégorie, nous regroupons tout ce qui a trait à l'histoire, l'organisation des sociétés, la politique et la géopolitique. Il peut s'agir des origines du Multivers comme de la légende d'un Immortel, de l'histoire d'une ville comme les liens commerciaux entre deux nations. 
 
-![cartographie](/articles_images/cartographie.png#right)
+<Image className="opacity-80" src="/articles/cartographie.png#right" alt="Cartographie" width={180} height={199} />
 ### Cartographie
 
 Dans cette catégorie, nous regroupons les cartes de Mô'Omgaïa, globales ou régionales, les plans de villes, de châteaux ou de différentes batisses qui permettront d'illustrer le monde de Mô'Omgaïa.
 
-![scénarii](/articles_images/scenarii.png#right)
+<Image className="opacity-80" src="/articles/scenarii.png#right" alt="Scénarii" width={180} height={199} />
 ### Scénarii
 
 Cette catégorie d'articles sera celle qui vous fera le plus vibrer puisqu'elle vous peremttra d'expérimenter Mô'Omagaïa à travers des aventures rocambolesques ou des rencontres insolites.
 
-![ressources](/articles_images/ressources.png#right)
+<Image className="opacity-80" src="/articles/ressources.png#right" alt="Ressources" width={180} height={199} />
 ### Ressources diverses
 
 Ici, vous trouverez des sources d'inspiration externe, des background pour vos personnages et toutes les aides de jeu inclassables.
@@ -56,7 +58,7 @@ Les notes sont rédigées au format Markdown, format trés courant en informatiq
 
 C'est avec ce framework qu'est construit le site et le jardin numérique. [Nextra](https://nextra.site/) est un framework proposé par Vercel qui construit des fichiers markdown dans une application React. 
 
-![contribution](/articles_images/contribution.png#right)
+<Image className="opacity-80" src="/articles/contribution.png#right" alt="Contribution" width={250} height={1247} />
 ## Comment puis-je contribuer ?
 
 Vous appréciez le contenu et souhaitez contribuer au jardin en ajoutant de nouvelles plantes ou en arrosant celles qui existent déjà ?

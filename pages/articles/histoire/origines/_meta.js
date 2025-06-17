@@ -1,4 +1,4 @@
-{
+export default {
   "la_creation_du_multivers": "La création du Multivers",
   "la_genese": "La Génèse",
   "l_age_elementaire": "L'Age élémentaire",

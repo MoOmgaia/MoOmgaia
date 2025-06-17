@@ -4,23 +4,6 @@ import ServiceButton from "./ServiceButton";
 import ServiceTag from "./ServiceTag";
 import Link from "next/link";
 
-type ServiceProps = {
-  name: string;
-  description: string;
-  link: string;
-  imgSrc: string;
-  imgAlt: string;
-  priority?: boolean;
-  newTab?: boolean;
-  tags?: string[];
-  buttons?: {
-    text: string;
-    link: string;
-    color: string;
-    newTab?: boolean;
-  }[];
-};
-
 const Service = ({
   name,
   description,
@@ -31,7 +14,7 @@ const Service = ({
   newTab = true,
   tags,
   buttons,
-}: ServiceProps) => {
+}) => {
   return (
     <div className="mb-4 flex flex-col rounded-lg bg-neutral shadow-md transition ease-in-out hover:shadow-2xl dark:bg-primary-900">
       {/* Image */}

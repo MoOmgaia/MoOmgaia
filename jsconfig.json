@@ -16,11 +16,11 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
+      "@/*": ["./*"],
       "@components/*": ["./components/*"],
-      "@components": ["./components/index.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [ "**/*.js", "**/*.jsx", "components/services/Service.jsx", "components/services/ServiceButton.jsx", "components/services/ServiceGrid.jsx", "components/services/ServiceTag.jsx", "components/backToTop/backToTop.jsx", "theme.config.jsx", "components/edito/Edito.jsx", "components/callout/callout.jsx", "components/callout/callout.jsx", "pages/_app.jsx"],
   "exclude": ["node_modules"],
   "plugins": [{"name": "next"}]
 }

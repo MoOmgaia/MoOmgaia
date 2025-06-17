@@ -1,10 +1,7 @@
 import React from "react";
 
-type EditoProps = { title: any; content: any;};
 
-const Edito = ({
-  title,
-  content}: EditoProps) => {
+const Edito = ({title, content}) => {
   return (
     <div className="mb-4 flex h-min flex-col rounded-lg bg-neutral shadow-md transition ease-in-out hover:shadow-2xl dark:bg-primary-900">
       {/* Title */}
