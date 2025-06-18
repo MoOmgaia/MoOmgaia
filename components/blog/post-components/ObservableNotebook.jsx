@@ -1,3 +1,4 @@
+'use Client'
 import React, { useRef, useEffect } from 'react';
 import { Runtime, Inspector, Library } from '@observablehq/runtime';
 

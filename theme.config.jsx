@@ -52,7 +52,8 @@ const docsThemeConfig = {
     },
     sidebar: {defaultMenuCollapseLevel: 1},
     toc: {
-        title: "Sommaire"
+        title: "Sommaire",
+        backToTop: null
     },
     main: ({children}) => {
         const { frontMatter } = useConfig();

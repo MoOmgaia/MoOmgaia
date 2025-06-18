@@ -59,13 +59,10 @@ export default function BackToTop() {
 
 
     return (<button
-
         id="backToTopButton"
-
+        title="Back To Top"
         onClick={scrollToTop}
-
         className="fixed right-5 bottom-5 mt-8 hidden rounded-full p-2 bg-primary-700 border-primary-700 hover:bg-primary-800"
-
     >
 
         <VscChevronUp className="w-[36px] h-[36px] text-white"/>

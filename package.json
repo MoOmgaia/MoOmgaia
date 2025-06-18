@@ -1,10 +1,11 @@
 {
-  "name": "Mo'Omgaia",
+  "name": "mo-omgaia",
   "version": "1.6.4",
   "description": "Mo'Omgaia, a D&D campaign setting.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next --config next-sitemap.config.mjs",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
@@ -23,6 +24,11 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@giscus/react": "2.2.6",
+    "@linard-y/from-her-to-eternity": "https://api.observablehq.com/@linard-y/from-her-to-eternity.tgz?v=3",
+    "@linard-y/paramatric-function": "https://api.observablehq.com/@linard-y/paramatric-function.tgz?v=3",
+    "@linard-y/planet3d": "https://api.observablehq.com/@linard-y/planet3d.tgz?v=3",
+    "@observablehq/inspector": "^5.0.1",
+    "@observablehq/runtime": "^5.9.9",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-hover-card": "^1.1.2",
     "@radix-ui/react-separator": "^1.1.0",

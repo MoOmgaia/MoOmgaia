@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import 'nextra-theme-docs/style.css';
+@import /* webpackIgnore: true */"https://cdn.jsdelivr.net/npm/@observablehq/inspector/dist/inspector.css";
 
 @layer base {
     html {

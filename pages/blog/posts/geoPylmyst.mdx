@@ -1,0 +1,200 @@
+---
+title: La projection geoPylmyst et le referentiel de grille hexagonale
+description: blbbla  
+date: 2024-05-21
+tags: [carte_globale]
+image: /blog-assets/geopylmyst/cover.png
+thumbnail: /blog-assets/geopylmyst/cover.png
+published: false
+comment: true
+---
+
+(https://thorf13.blogspot.com/2013/12/thorfs-world-building-techniques_11.html)
+
+[Mapping Issues: Sorting out the Outer World](https://www.thepiazza.org.uk/bb/viewtopic.php?t=8374&hilit=icosahedron&start=50)
+
+# La projection geoPylmyst et le referentiel de grille hexagonale
+
+## Les projections
+
+Une carte est le résultat de la projection de mesures tridimensionnelles relatives à un corps céleste sur une surface plane.
+Le plus souvent, la carte est créée en deux étapes : en rapportant d’abord les données du monde physique à une surface sphérique ou ellipsoïdale
+(le modèle géométrique du globe), puis le résultat à un plan. 
+
+Nous allons explorer le processus de projection cartographique en 2 étapes spécifiques :
+
+## 1 - Le choix d'un modèle
+Les planètes étant des patatoïdes, on commence par choisir un ellipsoïde de révolution représentatif. 
+Autrement dit, on approche la taille et la forme de l’objet (la Terre, par exemple) par une figure mathématique qui est soit une sphère, soit un ellipsoïde.
+Il existe plusieurs ellipsoïdes en usage, dont les plus courants sont :
+* Clarke 1866
+* Clarke 1880 anglais
+* Clarke 1880 IGN
+* Bessel
+* Airy
+* Hayford 1909
+* International 1924
+* WGS 66
+* International 1967
+* WGS 72
+* IAG-GRS80 (créé en 1980 par l'International Association of Geodesy comme Gedotedic Reference System)
+* WGS84 (World Geodetic System, crée en 1984)
+
+On peut signaler que les ellispoïdes IAG-GRS80 et WSG84 sont quasi identiques. 
+Plus rigoureusement, l'écart en terme de demi-petit axe entre les ellipsoïdes WGS84 et IAG-GRS80 est de 0.1 mm. 
+
+Signalons également quelques exceptions au choix d'un ellipsoïde : le modèle peut être pour certaine carte des polygones réguliers tels que les solides de Platon (tetrahedre, cube, octohedre, dodecahedre, icoshaedre).
+
+L'ellipsoïde seul ne suffit pas : il est nécessaire de le positionner par rapport à la surface réelle de la Terre. 
+La donnée de l'ellipsoïde et des paramètres de positionnement constitue ce qu'on appelle un `datum géodésique` à partir duquel pourra être appliquée une projection.
+Un datum géodésique est donc défini par :
+* la donnée de l'ellipsoïde
+* la position du centre de l'ellipsoïde par rapport au centre de masse de la Terre (de quelques centimètres à plus d'une centaine de mètres)
+* l'orientation des axes de l'ellipsoïde et un point origine (_point fondamental_) pour définir le système de coordonnées.
+à quoi il convient d'ajouter la projection courante.
+
+Il existe de nombreux datums, chacun adapté à un usage particulier, depuis des représentations globales du globe (ce sont les plus précises, comme DORIS qui permet de mesurer la dérive des continents ou le rebond post glaciaire) jusqu'à des bases cadastrales (moins précises mais s'ajustant au plus près du géoïde).
+Voici quelques datums géodésiques en usage :
+* Nouvelle Triangulation de la France (NTF) : France (jusqu'en décembre 2000; la plupart des cartes de l'IGN sont toujours dans ce système), basé sur l'ellipsoïde Clarke 1880 IGN, le point fondamental est au Panthéon à Paris, la projection courante est Lambert
+* Réseau Géodésique Français (RGF) 1993 : France, basé sur l'ellipsoïde IAG-GRS80, la projection associée est la projection Lambert93 (projection conique conforme). 
+* European Datum (ED) 50 : système européen unifié, basé sur l'ellipsoïde Hayford 1909, le point fondamental est à Potsdam, en Allemagne, la projection courante est UTM (Universal Transverse Mercator).
+* World Geodetic System (WGS84) : système mondial (pas de point fondamental), mis au point par le Département de la Défense des États Unis et utilisé par le GPS, basé sur l'ellipsoïde WGS84, la projection courante est UTM.
+
+## 2 - La projection
+Une fois un datum fixé, on peut choisir le type projection à appliquer pour obtenir une carte. 
+Les projections peuvent être classées en fonction de critères de géométrie, de forme, de propriétés spécifiques, de paramètres de projection et de  nomenclature.
+La classification géométrique se fonde sur l’observation des motifs du graticule (composé du réseau des parallèles en latitude et des méridiens en longitude). 
+Mais, cette fois encore, le choix de la projection est conduit par l'usage, car les projections peuvent avoir diverses propriétés :
+* projection **équivalente** : conserve localement les surfaces.
+* projection **conforme** : conserve localement les angles, donc les formes.
+* projection **aphylactique** : elle n'est ni conforme ni équivalente, mais peut être équidistante, c'est-à-dire conserver les distances sur les méridiens.
+
+Une projection ne peut être à la fois conforme et équivalente.
+
+Une carte ne pouvant pas être obtenue simplement en écrasant une sphère, la projection passe généralement par la représentation de la totalité ou une partie de l'ellipsoïde sur une surface développable, c'est-à-dire une surface qui peut être étalée sur un plan.
+
+Les trois formes mathématiques courantes qui répondent à ce critère (à savoir le plan, le cylindre et le cône) donnent lieu aux trois types principaux de projections :
+* La projection **cylindrique**
+* La projection **conique**
+* La projection **azimutale**
+
+Une projection qui ne peut être classée dans un de ces types est appelée **individuelle** ou **unique**.
+
+D'un point de vue mathématique, une projection permet d'établir entre la surface de la planète et le plan (ou la surface développable) une correspondance telle que:
+
+$x = f_1(\varphi, \lambda)$ et $y = f_2(\varphi, \lambda)$
+
+où $f_1$ et $f_2$ sont des fonctions continues partout sur l'ensemble de départ sauf sur un petit nombre de lignes et de points (tels que les pôles). 
+Il existe donc une infinité de solutions. Les mathématiciens ne sont pas privés d'en trouver, et on en connaît plus de deux cents (Joly, 1985).
+
+### Projection cylindrique
+Les projections cylindriques sont celles qui confèrent une apparence rectangulaire au graticule. 
+Le rectangle peut être vu comme le développement d’une surface cylindrique qui peut, à son tour, être enroulée en un cylindre. 
+Bien que ces projections soient créées de manière purement mathématique, plutôt qu’en introduisant la géométrie d’un cylindre, l’aspect final peut suggérer une construction cylindrique.
+Une projection cartographique cylindrique peut présenter une ligne ou deux lignes qui sont sans altération d’échelle. 
+
+Exemples de projection cylindrique :
+* Projection de Mercator (conforme)
+* Projection de Peters (équivalente)
+* Projection de Robinson (pseudo-cylindrique, aphylactique)
+* Projection UTM aussi appelée Gauss-Kruger (conforme)
+* Projection de Mercator oblique (utilisée en Suisse par exemple).
+* Projection équivalente de Lambert (équivalente) 
+
+Les projections cylindriques sont souvent employées pour les cartes du monde ; la latitude y est volontairement limitée vers le sud et vers le nord pour éviter la trop grande déformation des régions polaires qu’entraîne cette méthode de projection. 
+L’aspect normal de la projection Mercator (où l’axe du « cylindre » est dans la direction nord-sud) est employé pour les cartes marines dans le monde entier, alors que son aspect transverse (où l’axe du « cylindre » est orthogonal à la direction nord-sud) est régulièrement employé pour les cartes topographiques et est la projection utilisée pour le système de coordonnées UTM décrit plus haut.
+
+### Projection conique
+Les projections coniques donnent l’apparence d’une surface conique développée qui pourrait être roulée en un cône. 
+On peut y trouver une seule ligne, ou deux lignes, qui soient exemptes d’altérations de l’échelle.
+
+Exemples de projection conique :
+* Projection conforme de Lambert (conforme)
+* Projection équivalente d’Albers (équivalente)
+
+Les projections coniques sont inappropriées pour les cartes du monde et trouvent leur meilleur usage pour les zones qui présentent une élongation dans la direction est-ouest.
+Cela en fait les projections idéales pour représenter les masses continentales de l’hémisphère nord, telle celles des États-Unis, de l’Europe, ou de la Russie
+
+### Projection azimutale
+Les projections azimutales sont celles qui préservent les azimuts (c.-à-d. les directions par rapport à une direction donnée, celle du nord dans leur aspect normal). Un point seul ou un cercle peuvent exister sans déformation d’échelle.
+
+Il existe trois types de projections azimutales, qui se différencient par la position du point de perspective utilisé pour la projection:
+* Projection stéréographique
+* Projection gnomonique
+* Projection orthographique
+
+Par ailleurs, selon la position du plan tangent, la projection azimutale est dite polaire (plan tangent à un pôle), équatoriale (plan tangent en un point de l'équateur), ou oblique (plan tangent en un autre point). 
+La projection azimutale polaire sert pour les cartes représentant les lignes aériennes qui passent par les régions polaires afin de réduire la distance de parcours.
+
+#### Projection stéréographique
+La projection stéréographique, dont l’invention remonte au moins au IIe siècle avant Jésus-Christ, est une projection azimutale en perspective qui conserve les angles (c.-à-d. conforme). 
+Cette projection est la seule projection dans laquelle tous les cercles du globe sont représentés comme des cercles dans le plan de la projection. 
+Les aspects polaire, équatorial et oblique conduisent à différentes apparences du graticule.
+L’aspect polaire est réalisé en prenant l’un des pôles comme centre de la projection et en projetant les points sur un plan tangent à l’autre pôle. 
+Dans cet aspect, les méridiens sont des droites concourantes au pôle selon des angles qui sont les angles vrais. 
+Les parallèles sont des cercles qui sont tous centrés sur le pôle, représenté quant à lui par un point. 
+L’espacement entre les parallèles augmente au fur et à mesure qu’on s’éloigne du pôle. 
+La projection stéréographique est employée sous son aspect polaire pour les cartes topographiques des régions polaires. 
+Cette projection est généralement choisie pour les régions dont la forme est à peu près circulaire. 
+Elle est employée dans une forme ellipsoïdale oblique dans nombre de pays du monde, dont le Canada, la Roumanie, la Pologne et les Pays-Bas. 
+Les algorithmes mathématiques ou les versions de la projection stéréographique diffèrent en fonction des pays.
+
+#### Projection gnomonique
+La projection gnomonique n’est ni conforme ni équivalente. 
+C’est une projection en perspective azimutale où le point de projection est placé au centre de la Terre (d’où pour certains son nom : au centre de la Terre habitent les gnomes de la mythologie. 
+Elle a été inventée par le grec Thalès, probablement aux alentours de 580 av. J-C. 
+Tous les grands cercles du globe, dont tous les méridiens et l’équateur apparaissent comme des droites dans cette projection, une propriété qui lui est unique. 
+
+L’apparence du graticule change avec l’aspect, comme c’est le cas pour les autres projections azimutales.
+Dans l’aspect polaire, les méridiens sont des droites qui s’intersectent au pôle central selon des angles qui sont les angles vrais.
+Les parallèles sont des cercles qui sont tous centrés sur le pôle ponctuel, et dont l’espacement augmente au fur et à mesure qu’on s’en éloigne. 
+La projection ne peut montrer que moins d’un hémisphère.
+L’échelle augmente rapidement quand on s’éloigne du centre. 
+Ce qui la rend utile est sa qualité spécifique de représenter les grands cercles par des droites, ce qui aide les navigateurs et les aviateurs dans la détermination de la route la plus courte.
+
+Des exemples sont les projections de Fuller : projections gnomoniques sur un polyèdre, cuboctaèdre (14 faces) ou icosaèdre (20 faces).
+
+#### Projection orthographique
+La projection orthographique, qui existait déjà au IIe siècle avant Jésus-Christ, est une projection en perspective azimutale qui n’est ni conforme ni équivalente. 
+Elle est utilisée dans les aspects polaire, équatorial et oblique et permet de représenter un hémisphère entier. 
+Dans l’aspect polaire de la projection, les méridiens sont des droites qui s’intersectent au pôle central selon des angles qui sont les angles vrais. 
+Le pôle est un point et les parallèles sont des cercles qui sont tous centrés sur le pôle et dont l’espacement diminue au fur et à mesure qu’on s’éloigne du pôle. 
+L’échelle est vraie au centre et le long de la circonférence de tout cercle centré sur le centre de projection. 
+La projection présente un aspect qui ressemble à un globe. 
+Essentiellement, il s’agit d’une projection en perspective du globe sur un plan à partir d’un point de vue situé à une distance infinie au-dessus (orthogonalement) du point choisi pour centre.
+Elle est généralement utilisée pour représenter la Terre comme si celle-ci était vue de l’espace.
+
+### Projections uniques
+Il existe de nombreuses cartes qui ne résultent pas d'une projection unique sur un cône, un cylindre ou un plan:
+* Projection de Sanson-Flamsteed : projection sinusoïdale
+* Projection Goode : projection interrompue
+
+
+S’il existe tant de projections cartographiques, c’est parce qu’aucune n’est apte à satisfaire tous les besoins.
+Le choix d’une projection cartographique qui convienne à une application donnée dépend d’un ensemble de facteurs, dont l’objectif de la carte, le type de données à y faire figurer, la région du monde à représenter et l’échelle de la carte finale. 
+Des recommandations pour aider à raisonner son choix sont données dans tout un ensemble d’ouvrages imprimés et de ressources Internet (voir le paragraphe « Aller plus loin »). 
+Dans les SIG, les jeux de données à grande échelle (couvrant une faible étendue géographique) sont généralement projetés à l’aide de projections conformes de manière à préserver les angles. 
+Pour de telles applications, l’altération des aires est si faible au regard de l’étendue géographique qu’elle en est négligeable : une projection qui conserve les aires n’est donc pas nécessaire. 
+Généralement, les données à grande échelle sont destinées à des applications SIG dont l’étendue géographique est restreinte (par exemple, un bassin hydrologique, une région ou un État). 
+Les deux projections les plus communément utilisées pour ces échelles sont la projection conique conforme de Lambert et la projection de Mercator transverse, à la base du système UTM (Universal Transverse Mercator) et de la plupart des systèmes de coordonnées planes des États-Unis d’Amérique. 
+Pour les cartes mondiales à usage général, notre recommandation est d’éviter les projections cylindriques et de leur préférer certaines projections pseudo-cylindriques (par exemple, celle de Robinson ou une projection de compromis comme la projection triple de Winkel).
+
+La projection des données géographiques d’un modèle de planète tridimensionnel vers un système de coordonnées planes a toujours comme conséquence la déformation des aires, des formes, des distances et d’autres propriétés. 
+En choisissant de manière appropriée la projection, l’utilisateur peut préserver les caractéristiques qui lui importent, mais, inéluctablement, au détriment d’autres. 
+Dans ce chapitre nous avons examiné brièvement les concepts de base des systèmes de coordonnées et des projections cartographiques. Pour approfondir le sujet, le lecteur est invité à consulter les textes et sources référencés ci-dessous.
+
+
+
+
+
+La première étape pour la projection d'une surface sur une autre consiste à créer un ou plusieurs points de contact.
+Chaque contact est appelé point (ou ligne) de tangence. 
+Une projection plane est tangentielle au globe en un point.
+Les cônes et les cylindres tangentiels touchent le globe le long d'une ligne.
+Si une surface de projection coupe le globe au lieu de simplement toucher sa surface, la projection résultante est un cas sécant plutôt qu'un cas tangent. 
+Que le point soit tangent ou sécant, les points ou lignes de contact sont significatifs car ils définissent les emplacements de non-distorsion.
+En général, la distorsion augmente avec la distance depuis le point de contact.
+
+Les trois principaux types sont la projection cylindrique, la projection conique et la projection azimutale.
+
+

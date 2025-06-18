@@ -1,0 +1,287 @@
+---
+title: Les contours de Mô'Omgaïa
+description: Le contour des continents et des îles de Mô'Omgaïa  sont conservés identiques à ceux de Mystara. Nous reprenons ainsi une carte de Mystara pour échantillonner le tracé des contours et créer un fichier  
+date: 2023-11-18
+tags: [carte_globale]
+image: /blog-assets/contours/cover.png
+thumbnail: /blog-assets/contours/cover.png
+published: true
+comment: true
+---
+
+import Image from 'next/image'
+import styles from '@/styles/contours.module.css'
+import notebook from "@linard-y/from-her-to-eternity"
+import ObservableNotebook from '@/components/blog/post-components/ObservableNotebook';
+
+# Les contours de Mô'Omgaïa
+
+Le contour des continents et des îles de Mô'Omgaïa  sont conservés identiques à ceux de Mystara. Pour le reste, la topographie, les limites de territoire et les noms des villes, nations, etc., tout cela varie légèrement ou de façon plus importante.
+
+Pour les contours, nous reprenons ainsi une carte de Mystara pour échantillonner le tracé des contours et créer un fichier `geojson` qui permettra d'être la base de toutes les cartes globales de Mô'Omgaïa.
+Comme point de départ, nous avons choisi une carte de [Thorfinn Tait](https://www.pandius.com/thrs11iv.html). Thorfinn est un talenteux cartographe de Mystara qui a beaucoup oeuvrer pour rationaliser les cartes de Mystara publiées en réflichissant notamment aux systèmes de projection, aux échelles, aux origines des cartes de Mystara. Il a de nombreux sites à son actif consacrés à la cartographie de Mystara et à tout ce qui tourne autour ([www.thorfmaps.com](http://www.thorfmaps.com/) son blog, [AtlasOfMystara](https://mystara.thorfmaps.com/),un site l'exploration cartographique des territoires de Mystara, [Thorf’s Patreon](https://www.patreon.com/thorfinn) son patreon qui alimente ses autres sites, nombreuses de ses cartes sont aussi présentées sur le site [The Vaults of Pandius](http://pandius.com/ttait.html) et dans le forum consacré aux cartes de [The Piazza](http://www.thepiazza.org.uk/bb/viewforum.php?f=22)).
+La carte que nous avons choisi est présentée ci-dessous. Thorfin l'a présenté sur [un de ses posts](https://www.thorfmaps.com/mystara-climate-maps-ii/) sur le climat de Mystara en 2018. Comme nous cherchons à récupérer le tracé des continents, il était important d'éviter une carte trop chargée avec des indications textuelles par exemple et d'avoir une bonne résolution d'image.
+
+![Mystara](/blog-assets/contours/mystara-2018.png)
+
+Dans ce post, nous décrirons le process qui nous a conduit à la création du fichier `geojson` permettant de projeter les contours de Mô'Omagïa.
+
+## 1 - Retrait de l'arrière-plan étoilé
+L'image initiale est une représentation de Mystara en projection [Mollweide](https://fr.wikipedia.org/wiki/Projection_de_Mollweide). Nous allons d'abord retirer l'arrière-plan étoilé en réduisant (crop) l'image à l'ellipse définissant la planisphère en projection Mollweide.
+
+```javascript copy
+croppedImageSVG = {
+  const svg = d3.select(DOM.svg(width, height));    
+  
+  // On créé un masque qui cachera l'arrière-plan en ne laissant visible que le planisphère
+  svg.append("mask")
+    .attr("id", "myMask")  
+    // Tout ce qui est sous un pixel noir sera invisbible
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", "black");
+  
+  svg.select("#myMask")
+    // Tout ce qui est sous un pixel blanc sera visbible
+    .append("ellipse")
+    .attr("rx", (width)/2)
+    .attr("ry", (height)/2)
+    .attr("cx", (1+width)/2)
+    .attr("cy", (1+height)/2)
+    .attr("fill", "white");
+
+  // on affiche l'image sur laquelle on applique le masque
+  svg.append("image")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", width)
+    .attr("height", height)
+    .attr("xlink:href", URL.createObjectURL(imageSrc))
+    .attr("xmlns","http://www.w3.org/2000/svg")
+    .attr("mask", "url(#myMask)");  
+
+  return svg.node();
+}
+```
+
+![croppedImageSVG](/blog-assets/contours/croppedImageSVG.png)
+
+## 2 - Obtenir la palette de couleurs de l'image
+
+Pour extraire les couleurs dominantes utilisée dans l'image, nous utiliserons la transcription WASM du logiciel ImageMagick : [WASM-ImageMagick](https://github.com/KnicKnic/WASM-ImageMagick).
+
+Afin d'utiliser cette librairie, il faut d'abord transcrire les informations de l'image affichée dans le SVGElement créé à l'étape précédente dans un fichier ou un [`blob`](https://developer.mozilla.org/fr/docs/Web/API/Blob) stockant les données de l'image . 
+
+```javascript copy
+svgToBlob = (svgInput) => {
+  let resolve, reject;
+  const promise = new Promise((y, n) => (resolve = y, reject = n));
+  const img = new Image(width, height);
+  img.onerror = reject;
+  img.onload = () => {
+    const context = DOM.context2d(width, height);
+    context.drawImage(img, 0, 0, width, height);
+    context.canvas.toBlob(resolve);
+  };
+  const svg = svgInput.cloneNode(true);
+  svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
+  svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+  const serializer = new window.XMLSerializer;
+  const string = serializer.serializeToString(svg);
+  const serialize = new Blob([string], {type: "image/svg+xml"});
+  img.src = URL.createObjectURL(serialize);
+  return promise;
+}
+```
+
+Les objet `blob` ont les méthodes permettant d'accéder aux données brutes sous forme de tableau de bytes par exemple.
+
+```javascript copy
+sourceBytes = svgToBlob(croppedImageSVG)
+    .then(blob => blob.arrayBuffer())
+    .then(arrayBuffer => new Uint8Array(arrayBuffer));
+```
+
+On obtient ensuite la palette utilisée dans l'image avec ImageMagick sous forme d'un tableau de couleurs (codées au format hexadécimal)
+
+```javascript copy
+colorsParsed = {
+  const { outputFiles, exitCode } = await Magick.execute({
+    inputFiles: [{ name: 'input.png', content: sourceBytes }],
+    commands: [
+      `convert input.png +dither -colors 10 -unique-colors -colorspace HSL -depth 8 :txt out.txt`
+    ]
+  });
+  const out = await Magick.readFileAsText(outputFiles[0]);
+  return d3
+    .dsvFormat(" ")
+    .parseRows(out)
+    .slice(1)
+    .map((e) => d3.hsl(e[5]).hex())
+}
+```
+
+![colors](/blog-assets/contours/colors.png)
+
+## 3 - Transformation de couleurs de l'image
+
+Toujours à l'aide de WASM-ImageMagick, nous allons transformer les couleurs continentales (#8c743c, #a49d48, #95c35f, #95c864) en rouge et rendre tous les autres pixels de l'image transparents.
+
+Cependant, pour chaque couleur nous allons définir un seuil de tolerance (`fuzz`) qui permettra de transformer également les pixels aux valeurs de couleurs proches. Pour notre image nous utilisons les paramètres suivants pour obtenir une image quasi-monochrome :
+* #000000 &rarr; #ffffff00   fuzz: **25%**
+* #181a1a &rarr; #ffffff00   fuzz: **25%**
+* #151a1d &rarr; #ffffff00   fuzz: **25%**
+* #8c743c &rarr; #fe0000   fuzz: **15%**
+* #a49d48 &rarr; #fe0000   fuzz: **15%**
+* #95c35f &rarr; #fe0000   fuzz: **15%**
+* #95c864 &rarr; #fe0000   fuzz: **15%**
+* #51a3cd &rarr; #ffffff00   fuzz: **25%**
+* #55a4cd &rarr; #ffffff00   fuzz: **25%**
+* #6cbae2 &rarr; #ffffff00   fuzz: **25%**
+
+```javascript copy
+newImage1 = {
+  const cmds = colorsParsed.map((c,i) => {
+  if (settings[i].keep) {
+    return `convert ${i==0?'input.png':`ouput${i}.png`} -fuzz ${settings[i].fuzz}% -fill red -opaque ${c} output${i+1}.png`
+  } else {
+    return `convert ${i==0?'input.png':`ouput${i}.png`} -fuzz ${settings[i].fuzz}% -fill transparent -opaque ${c} output${i+1}.png`
+  }
+}).join(' \\ ');
+
+  const { outputFiles, exitCode } = await Magick.execute({
+    inputFiles: [{ name: 'input.png', content: sourceBytes }],
+    commands: cmds
+  });
+
+  const imgout = new Image(width, height);
+  imgout.src = URL.createObjectURL(outputFiles[0].blob);
+  imgout.blob = outputFiles[0].blob;
+  return imgout;
+}
+```
+
+![newImage1](/blog-assets/contours/newImage1.png)
+
+## 4 - Détourage
+
+Pour passer de cette image rouge et blanche à des contours nets, nous allons utiliser la bibliothèque [`imagetracerjs`](https://github.com/jankovicsandras/imagetracerjs) pour détourer chaque ensemble de pixels rouges.
+
+Les outils de `imagetracerjs` ont un grand nombre de paramètres sur lesquels on peut jouer, je vous recommande donc de consulter la [documentation](https://github.com/jankovicsandras/imagetracerjs/blob/master/options.md) pour bien comprendre l'utilisation de chaque paramètre.
+
+Vous trouverez ci-dessous le paramétrage que nous utilisons pour un résultat final convenable.
+
+<Image src="/blog-assets/contours/options_imagetracerjs.png#center" alt="options_imagetracerjs" width={347} height={454} />
+
+```javascript copy
+imgTraceData = new Promise(async (resolve, reject) => {
+  ImageTracer.loadImage(
+          newImage1.src,
+          function(canvas){
+            resolve(
+              ImageTracer.imagedataToTracedata( ImageTracer.getImgdata(canvas), options )
+            );
+          },
+          options
+      );
+})
+```
+
+`imagetracerjs` décompose l'image en plusieurs couches de couleurs. On doit s'assurez de ne considérer que la couleur rouge (ou celle qui s'en rapproche le plus) pour visualiser un résultat cohérent car les autres couches de couleurs résiduelles sont des parasites restés dans l'image.
+
+```javascript copy
+svgForEnabledLayers = {
+  const svg = ImageTracer.getsvgstring(
+    Object.assign({}, 
+                  imgTraceData, 
+                  {
+                    layers:imgTraceData.layers.filter((_,i) => layersEnabled[0].index==i), 
+                    palette: imgTraceData.palette.filter((_,i) => layersEnabled[0].index==i)
+                  }), options);
+  const htmlSVG = html`<style></style>${svg}`; //<style>svg path:hover { stroke: firebrick !important; stroke-width: 2; } </style>
+  d3.select(htmlSVG).selectAll("svg")
+    .attr("transform", `translate(-${(imgTraceData.width-width)/2} -${(imgTraceData.height-height)/2}) scale(${width/imgTraceData.width})`) 
+    .attr("width",`${imgTraceData.width}px`)
+    .attr("height", `${imgTraceData.height}px`);
+  if (removeFill) 
+    d3.select(htmlSVG).selectAll("path").style("fill", "none");
+  
+  return htmlSVG;
+}
+
+svgImg={
+  let res = [];
+  for (var l=0; l < svgForEnabledLayers.children.length; l++) {
+    res.push(svgForEnabledLayers.children[l])
+  }
+  return res[1]; // on ne veut pas le HTMLStyleElement en position 0
+}
+```
+
+![svgForEnabledLayers](/blog-assets/contours/svgForEnabledLayers.png)
+
+Tout en bas de la carte, un ou deux pixels qui appartenaient à l'origine au périmètre du planisphère apparaissent maintenant dans un tout petit `path` autonome. Ca semble être le seul cas, et nous le supprimerons une fois que nous aurons créé les géoPolygones.
+
+## 5 - Echantillonnage des `path`
+
+Nous disposons à présent des contours recherchés sous la forme d'une image vectorielle (svg). Nous allons échantillonner chaque `path` dans le svg en utilisant une méthode linéaire basée sur les méthodes getTotalLength() et getPointAtLength(t) des `path` svg.
+Au lieu d'imposer un nombre constant de points à échantillonner, le nombre de points dépendra pour chaque `path` de sa longueur totale et d'une valeur de division de cette longueur. Plus la valeur de division est petite, plus le nombre de points échantillonnés est important.
+
+```javascript copy
+polygonSampledFromPath = (path,samples) => {
+
+  path = svg`<path d="${path}">`
+  var poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+
+  var points = [];
+  var len  = path.getTotalLength();
+  var step = len/samples;
+  
+  for (var i=0;i<=len;i+=step){
+    var p = path.getPointAtLength(i);
+    points.push([p.x, p.y]);
+  }
+
+  return points
+}
+```
+On obtient alors des ensembles de points définissant des polygones pour chaque continents et îles de l'image. L'image ci-dessous est obtenu avec un facteur de division égal à 1. Cette image représent chaque point échantillonné. On constate que la valeur de division 1 fournit déjà un nombre d'échantillons trés important qui nous donne l'impression que le tracé des continents est continu mais zoomez sur l'image avec la molette de votre souris et vous pourrez constater qu'il s'agit bien d'ensembles de points. 
+
+<ObservableNotebook notebook={notebook} cells={["renderer"]} customClassName={styles.samplingRenderer} />
+
+## 6 - Inversion de projection et création du fichier `geojson`
+
+Chaque point obtenu peut être retro-projeté afin d'obtenir ces coordonnées géospatiales (longitude, latitude) et ainsi nous obtenons les `geometry` non projetées de chaque `Feature` associé à un continent ou à une île. L'ensemble de ces `features` constitue la `FeatureCollection` que l'on sauvegarde dans un fichier `geojson`.
+
+```javascript copy
+geopolygons = {
+  const proj = d3.geoMollweide()
+    .fitExtent([[0, 0], [imgTraceData.width, imgTraceData.height]], ({ type: "Sphere" }));
+  var data = [];
+  for (var l=0; l < svgImg.children.length; l++) {
+    var path = svgImg.children[l];
+    var len = path.getTotalLength();
+    var NUM_POINTS = Math.max(8,len/step);
+    data.push(polygonSampledFromPath(path.getAttribute("d").split(" M")[0],NUM_POINTS).map(d=>proj.invert(d)));
+  }
+  return data.slice(0,-1) // on supprime ici le dernier polygone qui correspond au path créé par les pixels résiduels du bord du planisphère de l'image d'origine.
+}
+
+sampledPoints = geopolygons.flat()
+
+geojson = {
+  const getProperties = (i) => names.filter(d => d.ID ==i)[0];
+  let features = geopolygons.map((p,i) => Object({type:'Feature', id:i, geometry:({type: "Polygon", coordinates: [p]}), properties:getProperties(i)}))
+  return ({type:'FeatureCollection', features:features})
+}
+```
+
+## 7 - Reprojection
+
+Le fichier `geojson` obtenu les contours des contients et des iles peuvent être reprojetés en projection Mollweide ou tout autre projection disponible.
+
+
+<ObservableNotebook notebook={notebook} cells={["viewof targetProjection","Render_Proj"]} customClassName={styles.reprojection} />
