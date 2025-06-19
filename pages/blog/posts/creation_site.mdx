@@ -1,10 +1,65 @@
 ---
 title: Les outils de création du site
-description: blbbla  
+description: On liste ici les différents supports de développement du site &#58; React, Next.js, Nextra, TailwindCSS, Observable...  
 date: 2023-02-10
 tags: [site]
 image: /blog-assets/creation_site/cover.png
 thumbnail: /blog-assets/creation_site/cover.png
-published: false
+published: true
 comment: true
 ---
+import Image from 'next/image'
+
+# Les outils de création du site
+
+<Image className="opacity-80" src="/blog-assets/creation_site/engine.png#center" alt="Outils de création" width={361} height={362} />
+
+## React
+<Image src="/blog-assets/creation_site/React_Logo_SVG.svg" alt="React" width={40} height={40} />
+Le site de Mô’Omgaïa est une site **React** c’est-à-dire qu’il utilise la bibliothèque javascript [React.js](https://reactjs.org/). Elle permet d’assembler des 
+composants, mais n’est pas prescriptif en ce qui concerne le routage ou le chargement de données. Pour construire une appli entière avec React, il faut choisir 
+un framework React full-stack tels que [Next.js](https://nextjs.org/) ou [Remix](https://remix.run/). Nous avons fait le choix de **Next.js** (voi ci-dessous).
+
+**React** est aussi une architecture. Les frameworks qui l’implémentent permettent de charger des données dans des composants asynchrones exécutés côté serveur ou 
+même lors du build. On peut ainsi lire des données depuis un fichier ou une base de données, et les passer à des composants interactifs.
+
+## Next.js, Nextra
+<Image src="/blog-assets/creation_site/NextJS.png" alt="Next.js" width={40} height={40} />
+Le site est construit sur deux piliers : [Nextra](https://nextra.site/) et [Next.js](https://nextjs.org/). **Nextra** est un framework basé sur **Next.js** qui facilite grandement la création de sites de documentation.
+Tout tourne autour du contenu **Markdown** (ou **MDX**) avec un thème Docs pré-construit qui intègre la navigation, la recherche et une table des matières prêts à l'emploi.
+Nous avons choisi Nextra pour ses principales caractéristiques :
+
+-	Simplicité Markdown : Les articles du jardin numérique et les posts du blog sont écrits en Markdown ou MDX pour un contenu riche et interactif.
+-	Avantages du thème Docs : Barre latérale, barre de recherche et mises en page responsives générées automatiquement.
+-	Puissance de Next.js : Tire parti de la vitesse de Next.js, du routeur d'application et de l'intégration Vercel.
+-	Personnalisable : On peut facilement modifier les thèmes, ajoutez des composants React ou créez des mises en page personnalisées.
+-	Open Source : Avec plus de 3,8K étoiles sur GitHub, il est piloté par la communauté et gratuit.
+
+[_Pour en savoir plus sur Next.js..._](https://hello-pomelo.com/articles/pourquoi-choisir-next-js-pour-votre-prochain-projet-web/)
+
+## Markdown
+<Image src="/blog-assets/creation_site/MDX.png" alt="MDX" width={40} height={40} />
+Les articles sont rédigées au format **Markdown**, format trés courant en informatique pour rédiger des textes.
+Ensuite, ces fichiers Markdown sont interprétés par le framework [Next.js](https://nextjs.org/) afin de paraître sur votre écran tel que vous pouvez les voir.   
+[_Pour en savoir plus sur le Markdown et MDX..._](https://perceptible.fr/blog/mdx)
+
+## Observable
+<Image src="/blog-assets/creation_site/Observable.png" alt="Observable" width={40} height={40} />
+[Observable](https://observablehq.com) est un environnement de développement tout en un, sous forme de notebooks dans le navigateur. Un notebook est un ensemble de cellules nommées 
+ou anonymes qui se comportent comme un tableur. Chaque cellule calcule une expression à partir des valeurs d'autres cellules. La modification d'une valeur 
+ou d'une expression dans ces chaînes de dépendance provoque le recalcul automatique immédiat de tout ce qui a changé. Là encore on peut jongler entre du Markdown, 
+du javascript ou du html. Quand un notebook est finalisé il est possible de l’exporter entièrement ou cellule par cellule dans un des articles ou dans un des posts 
+du site en maintenant l'intéractivité implémantée dans les cellules du notebook.   
+[_Pour en savoir plus sur Observable..._](https://perceptible.fr/blog/observable)
+
+## Tailwind CSS
+<Image src="/blog-assets/creation_site/TailwindCSS.png" alt="TailwindCSS" width={40} height={40} />
+Pour styliser nos pages nous utilisons [Tailwind CSS](https://tailwindcss.com/), un framework CSS axé sur l’utilité, avec un ensemble de classes CSS prédéfinies qui peuvent être appliquées 
+directement dans notre balisage pour accélérer la conception des pages et maintenir la cohérence de la conception à l’aide de systèmes prédéfinis.
+
+## L’herbergement chez Vercel
+<Image src="/blog-assets/creation_site/Vercel.png" alt="Vercel" width={40} height={40} />
+[Vercel](https://vercel.com/home) est l’editeur de [Next.js](https://nextjs.org/), cela simplifie le travail :
+•	Déploiement sans effort : Vercel détecte automatiquement nextra pour des déploiements en un clic.
+•	Vitesse fulgurante : Génération de sites statiques et CDN pour des chargements de page instantanés.
+•	Hébergement gratuit : Le niveau gratuit de Vercel prend en charge la plupart des projets avec des domaines personnalisés.
