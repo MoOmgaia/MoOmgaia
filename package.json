@@ -23,7 +23,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@giscus/react": "2.2.6",
-    "@linard-y/from-her-to-eternity": "https://api.observablehq.com/@linard-y/from-her-to-eternity.tgz?v=3",
+    "@linard-y/from-her-to-eternity": "https://api.observablehq.com/@linard-y/from-her-to-eternity@3208.tgz?v=3",
     "@linard-y/paramatric-function": "https://api.observablehq.com/@linard-y/paramatric-function.tgz?v=3",
     "@linard-y/planet3d": "https://api.observablehq.com/@linard-y/planet3d.tgz?v=3",
     "@observablehq/inspector": "^5.0.1",

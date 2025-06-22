@@ -18,8 +18,8 @@ importers:
         specifier: 2.2.6
         version: 2.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@linard-y/from-her-to-eternity':
-        specifier: https://api.observablehq.com/@linard-y/from-her-to-eternity.tgz?v=3
-        version: https://api.observablehq.com/@linard-y/from-her-to-eternity.tgz?v=3(@observablehq/runtime@5.9.9)
+        specifier: https://api.observablehq.com/@linard-y/from-her-to-eternity@3208.tgz?v=3
+        version: https://api.observablehq.com/@linard-y/from-her-to-eternity@3208.tgz?v=3(@observablehq/runtime@5.9.9)
       '@linard-y/paramatric-function':
         specifier: https://api.observablehq.com/@linard-y/paramatric-function.tgz?v=3
         version: https://api.observablehq.com/@linard-y/paramatric-function.tgz?v=3(@observablehq/runtime@5.9.9)
@@ -666,9 +666,9 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@linard-y/from-her-to-eternity@https://api.observablehq.com/@linard-y/from-her-to-eternity.tgz?v=3':
-    resolution: {tarball: https://api.observablehq.com/@linard-y/from-her-to-eternity.tgz?v=3}
-    version: 2716.0.0
+  '@linard-y/from-her-to-eternity@https://api.observablehq.com/@linard-y/from-her-to-eternity@3208.tgz?v=3':
+    resolution: {tarball: https://api.observablehq.com/@linard-y/from-her-to-eternity@3208.tgz?v=3}
+    version: 3208.0.0
     peerDependencies:
       '@observablehq/runtime': 4 - 5
 
@@ -5679,7 +5679,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@linard-y/from-her-to-eternity@https://api.observablehq.com/@linard-y/from-her-to-eternity.tgz?v=3(@observablehq/runtime@5.9.9)':
+  '@linard-y/from-her-to-eternity@https://api.observablehq.com/@linard-y/from-her-to-eternity@3208.tgz?v=3(@observablehq/runtime@5.9.9)':
     dependencies:
       '@observablehq/runtime': 5.9.9
 
