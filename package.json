@@ -2,6 +2,7 @@
   "name": "mo-omgaia",
   "version": "1.6.4",
   "description": "Mo'Omgaia, a D&D campaign setting.",
+  "packageManager": "pnpm@10.9.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
